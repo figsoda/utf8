@@ -5,8 +5,8 @@ UTF-8 support for Nix
 ## Why
 
 Strings in Nix are byte strings, and builtin functions like `substring`
-(and by extension some `lib` functions in nixpkgs)
-processes bytes instead of utf8 code points.
+(and by extension some `lib` functions in [nixpkgs](https://github.com/nixos/nixpkgs))
+processes bytes instead of UTF-8 code points.
 That means these functions can create invalid strings when given strings with UTF-8.
 This library basically allows you to convert it to a list of UTF-8 code points.
 
