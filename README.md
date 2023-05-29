@@ -2,6 +2,14 @@
 
 UTF-8 support for Nix
 
+## Why
+
+Strings in Nix are byte strings, and builtin functions like `substring`
+(and by extension some `lib` functions in nixpkgs)
+processes bytes instead of utf8 code points.
+That means these functions can create invalid strings when given strings with UTF-8.
+This library basically allows you to convert it to a list of UTF-8 code points.
+
 ## Usage
 
 Try it out with flakes
@@ -20,7 +28,7 @@ nix repl -f .
 
 Type: `String -> [ String ]`
 
-Split a string into a list of characters
+Split a string into a list of code points
 
 ```
 nix-repl> chars "你好，世界！"
@@ -31,7 +39,7 @@ nix-repl> chars "你好，世界！"
 
 Type: `String -> String`
 
-Return the first character of the string
+Return the first code point of the string
 
 ```
 nix-repl> head "你好，世界！"
@@ -42,7 +50,7 @@ nix-repl> head "你好，世界！"
 
 Type: `String -> String`
 
-Return the string without the first character
+Return the string without the first code point
 
 ```
 nix-repl> tail "你好，世界！"
@@ -52,6 +60,8 @@ nix-repl> tail "你好，世界！"
 ### `length`
 
 Type: `String -> Int`
+
+Return the number of code points in the string
 
 ```
 nix-repl> length "你好，世界！"
