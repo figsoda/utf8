@@ -43,8 +43,7 @@
         {
           devShells.default = pkgs.mkShell {
             packages = [
-              # inputs' is too eager
-              inputs.namaka.packages.${system}.default
+              inputs'.namaka.packages.default
             ];
           };
 
