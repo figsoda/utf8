@@ -32,7 +32,7 @@
         "x86_64-linux"
       ];
 
-      perSystem = { inputs', pkgs, system, ... }:
+      perSystem = { inputs', pkgs, ... }:
         let
           rust = inputs'.fenix.packages.minimal.toolchain;
           rustPlatform = pkgs.makeRustPlatform {
