@@ -9,8 +9,7 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     namaka = {
-      # # pin to a stable release when namaka.toml support is released
-      url = "github:nix-community/namaka";
+      url = "github:nix-community/namaka/v0.2.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
