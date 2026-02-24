@@ -1,5 +1,3 @@
-#![feature(array_windows)]
-
 use std::{
     fs::File,
     io::{self, Write},
@@ -10,7 +8,8 @@ fn main() -> io::Result<()> {
     writeln!(out, "# generated with `nix run ./dev`")?;
     writeln!(out, "{{")?;
 
-    for (i, &[start, end]) in [0u8, 0b1100_0000, 0b1110_0000, 0b1111_0000, 0]
+    // skipping NUL, since it cannot be represented in a Nix string
+    for (i, &[start, end]) in [1u8, 0b1100_0000, 0b1110_0000, 0b1111_0000, 0]
         .array_windows()
         .enumerate()
     {
