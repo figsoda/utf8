@@ -2,20 +2,24 @@
   inputs = {
     fenix = {
       url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-analyzer-src.follows = "";
+      };
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     namaka = {
-      url = "github:nix-community/namaka/v0.2.0";
+      url = "github:nix-community/namaka/v0.2.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = inputs@{ flake-parts, namaka, ... }:
+  outputs =
+    inputs@{ flake-parts, namaka, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake.checks = namaka.lib.load {
         src = ./tests;
@@ -31,7 +35,8 @@
         "x86_64-linux"
       ];
 
-      perSystem = { inputs', pkgs, ... }:
+      perSystem =
+        { inputs', pkgs, ... }:
         let
           rust = inputs'.fenix.packages.minimal.toolchain;
           rustPlatform = pkgs.makeRustPlatform {
