@@ -11,6 +11,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: softprops/action-gh-release@v2
-        with:
-          body: "[CHANGELOG.md](https://github.com/figsoda/utf8/blob/main/CHANGELOG.md)"
+      - name: Release
+        run: |
+          gh release create "$GITHUB_REF" \
+            --repo "$GITHUB_REPOSITORY" \
+            --notes "[CHANGELOG.md](https://github.com/figsoda/utf8/blob/$GITHUB_REF/CHANGELOG.md)"
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
