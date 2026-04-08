@@ -12,16 +12,6 @@ updates:
         patterns: ["*"]
 
   - package-ecosystem: nix
-    directory: /
-    schedule:
-      interval: weekly
-    cooldown:
-      default-days: 7
-    groups:
-      nix:
-        patterns: ["*"]
-
-  - package-ecosystem: nix
     directory: /dev
     schedule:
       interval: weekly
