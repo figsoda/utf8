@@ -4,7 +4,7 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: daily
+      interval: monthly
     cooldown:
       default-days: 7
     groups:
@@ -14,7 +14,7 @@ updates:
   - package-ecosystem: nix
     directory: /dev
     schedule:
-      interval: weekly
+      interval: quarterly
     cooldown:
       default-days: 7
     groups:
